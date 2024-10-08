@@ -317,7 +317,7 @@
                                             </select>
                                         </div>
                                     </li>
-
+                                    
                                     <li class="nav-item">
                                         <div class="col-md-12">
                                             <button type="button" class="tombol-cari"
@@ -381,7 +381,7 @@
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
                                     <div class="map-theme-selector">
-
+                    
                                         <!-- World Imagery Map -->
                                         <div class="map-option">
                                             <label for="imagery">
@@ -392,7 +392,7 @@
                                                 <p>World Imagery Map</p>
                                             </div>
                                         </div>
-
+                    
                                         <!-- World Street Map -->
                                         <div class="map-option">
                                             <label for="street">
@@ -403,7 +403,7 @@
                                                 <p>World Street Map</p>
                                             </div>
                                         </div>
-
+                    
                                         <!-- Open Street Map -->
                                         <div class="map-option">
                                             <label for="osm">
@@ -414,7 +414,7 @@
                                                 <p>Open Street Map</p>
                                             </div>
                                         </div>
-
+                    
                                         <!-- Esri World Map -->
                                         <div class="map-option">
                                             <label for="esri">
@@ -425,13 +425,13 @@
                                                 <p>Esri World Map</p>
                                             </div>
                                         </div>
-
+                    
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </li>
-
+                    
 
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#deskripsi" role="button"
@@ -540,7 +540,7 @@
         });
 
         var view = new ol.View({
-            center: ol.proj.fromLonLat([110.3655752364325, -7.800784401435764]),
+            center: ol.proj.fromLonLat([110.287958, -7.854943]),
             zoom: 13
         });
 
