@@ -1,0 +1,36 @@
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    overflow: hidden;
+    background-color: #fff;
+    transition: all 0.6s ease-out;
+}
+
+.border-custom {
+    border-top: 2px solid #001485;
+    border-bottom: 2px solid #001485;
+}
+
+#preloader:before {
+    content: "";
+    position: fixed;
+    top: calc(50% - 30px);
+    left: calc(50% - 30px);
+    border: 6px solid #6b5e36;
+    border-top-color: #503c2b;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: animate-preloader 2s linear infinite;
+}
+
+@keyframes animate-preloader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

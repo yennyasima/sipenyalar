@@ -1,0 +1,32 @@
+#navbar {
+    overflow: hidden;
+    transition: 0.4s;
+    position: fixed;
+    color:white;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    fill: white;
+}
+
+#navbar-login {
+    overflow: hidden;
+    background-color: white;
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+
+#navbar.scrolled {
+    background-color: white;
+    color: #28512880;
+    opacity: 1;
+    fill: #28512880;
+}
+#navbar.scrolled #appName {
+    color: #D95639;
+}
+
+
