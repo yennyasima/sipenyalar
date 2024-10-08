@@ -9,7 +9,10 @@
     <title>SIPENYALAR</title>
 
     <!-- Tailwind CSS -->
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/custom.css'])
+    {{--  @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/custom.css'])  --}}
+    <link rel="stylesheet" href="{{ \App\Helpers\Helper::viteAsset('resources/css/app.css') }}">
+    <script type="module" src="{{ \App\Helpers\Helper::viteAsset('resources/js/app.js') }}"></script>
+
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.png') }}" />

@@ -317,35 +317,7 @@
                                             </select>
                                         </div>
                                     </li>
-                                    <li class="nav-item">
-                                        <div class="mb-3">
-                                            <select class="form-select form-select-sm" id="wilayah" name="wilayah">
-                                                <option selected disabled>Pilih Wilayah</option>
 
-                                                <optgroup label="Wilayah DBD">
-                                                    @foreach ($wilayahDbd as $w)
-                                                        <option value="{{ $w }}">{{ $w }}
-                                                        </option>
-                                                    @endforeach
-                                                </optgroup>
-
-                                                <optgroup label="Wilayah ISPA">
-                                                    @foreach ($wilayahIspa as $w)
-                                                        <option value="{{ $w }}">{{ $w }}
-                                                        </option>
-                                                    @endforeach
-                                                </optgroup>
-
-                                                <optgroup label="Wilayah HIV">
-                                                    @foreach ($wilayahHiv as $w)
-                                                        <option value="{{ $w }}">{{ $w }}
-                                                        </option>
-                                                    @endforeach
-                                                </optgroup>
-
-                                            </select>
-                                        </div>
-                                    </li>
                                     <li class="nav-item">
                                         <div class="col-md-12">
                                             <button type="button" class="tombol-cari"
@@ -409,7 +381,7 @@
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
                                     <div class="map-theme-selector">
-                    
+
                                         <!-- World Imagery Map -->
                                         <div class="map-option">
                                             <label for="imagery">
@@ -420,7 +392,7 @@
                                                 <p>World Imagery Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- World Street Map -->
                                         <div class="map-option">
                                             <label for="street">
@@ -431,7 +403,7 @@
                                                 <p>World Street Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- Open Street Map -->
                                         <div class="map-option">
                                             <label for="osm">
@@ -442,7 +414,7 @@
                                                 <p>Open Street Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- Esri World Map -->
                                         <div class="map-option">
                                             <label for="esri">
@@ -453,13 +425,13 @@
                                                 <p>Esri World Map</p>
                                             </div>
                                         </div>
-                    
+
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    
+
 
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#deskripsi" role="button"
@@ -568,7 +540,7 @@
         });
 
         var view = new ol.View({
-            center: ol.proj.fromLonLat([110.287958, -7.854943]),
+            center: ol.proj.fromLonLat([110.3655752364325, -7.800784401435764]),
             zoom: 13
         });
 
@@ -623,7 +595,7 @@
             var jenisPenyakit = $('#jenisPenyakit').val();
             var wilayah = $('#wilayah').val();
 
-            if (!tahun || !bulan || !jenisPenyakit || !wilayah) {
+            if (!tahun || !bulan || !jenisPenyakit) {
                 toastr.warning('Mohon lengkapi semua filter.');
                 return;
             }

@@ -6,7 +6,9 @@
     <title>Page Not Found</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{--  @vite(['resources/css/app.css', 'resources/js/app.js'])  --}}
+    <link rel="stylesheet" href="{{ \App\Helpers\Helper::viteAsset('resources/css/app.css') }}">
+    <script type="module" src="{{ \App\Helpers\Helper::viteAsset('resources/js/app.js') }}"></script>
     <link rel="icon" href="{{ asset('./assets/images/404.png') }}" type="image/png">
 </head>
 
