@@ -317,7 +317,7 @@
                                             </select>
                                         </div>
                                     </li>
-                                    
+
                                     <li class="nav-item">
                                         <div class="col-md-12">
                                             <button type="button" class="tombol-cari"
@@ -381,7 +381,7 @@
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
                                     <div class="map-theme-selector">
-                    
+
                                         <!-- World Imagery Map -->
                                         <div class="map-option">
                                             <label for="imagery">
@@ -392,7 +392,7 @@
                                                 <p>World Imagery Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- World Street Map -->
                                         <div class="map-option">
                                             <label for="street">
@@ -403,7 +403,7 @@
                                                 <p>World Street Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- Open Street Map -->
                                         <div class="map-option">
                                             <label for="osm">
@@ -414,7 +414,7 @@
                                                 <p>Open Street Map</p>
                                             </div>
                                         </div>
-                    
+
                                         <!-- Esri World Map -->
                                         <div class="map-option">
                                             <label for="esri">
@@ -425,13 +425,13 @@
                                                 <p>Esri World Map</p>
                                             </div>
                                         </div>
-                    
+
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </li>
-                    
+
 
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#deskripsi" role="button"
@@ -612,31 +612,42 @@
                     wilayah: wilayah
                 },
                 success: function(response) {
-                    toastr.success('Data berhasil dimuat!');
-
-
+                    // Clear the current vectorSource
                     vectorSource.clear();
 
-
+                    // Add new features to the vectorSource
                     Object.keys(response).forEach(function(key) {
                         response[key].forEach(function(item) {
-                            var feature = new ol.format.GeoJSON().readFeature({
+                            var new_feature = new ol.format.GeoJSON().readFeature({
                                 'type': 'Feature',
-                                'geometry': JSON.parse(item
-                                    .geometry)
+                                'geometry': JSON.parse(item.geometry)
                             }, {
                                 dataProjection: 'EPSG:4326',
                                 featureProjection: 'EPSG:3857'
                             });
 
-                            vectorSource.addFeature(feature);
+                            vectorSource.addFeature(new_feature);
                         });
                     });
+
+                    // Ensure that features have been successfully added
+                    var featureCount = vectorSource.getFeatures().length;
+                    if (featureCount > 0) {
+                        toastr.success('Data berhasil dimuat! (' + featureCount + ' fitur ditambahkan)');
+                    } else {
+                        toastr.warning('Tidak ada fitur yang ditambahkan.');
+                    }
+
+                    // Ensure that the layer is properly applied to the map
+                    if (!map.getLayers().getArray().includes(vectorLayer)) {
+                        map.addLayer(vectorLayer); // Pastikan layer ditambahkan jika belum ada
+                    }
                 },
                 error: function() {
                     toastr.error('Gagal memuat data.');
                 }
             });
+
         });
     </script>
 
