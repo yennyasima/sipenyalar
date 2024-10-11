@@ -630,7 +630,7 @@
                                     color: fillColor
                                 }),
                                 stroke: new ol.style.Stroke({
-                                    color: '#333'
+                                    color: '#333',
                                     width: 1
                                 })
                             });
