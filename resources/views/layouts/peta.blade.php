@@ -530,10 +530,10 @@
             source: vectorSource,
             style: new ol.style.Style({
                 fill: new ol.style.Fill({
-                    color: '#d9563952'
+                    color: '#ffffff'
                 }),
                 stroke: new ol.style.Stroke({
-                    color: '#6571fb',
+                    color: '#ffffff',
                     width: 2
                 })
             })
@@ -618,7 +618,7 @@
                         source: vectorSource,
                         style: function(feature) {
                             var tingkatKa = feature.get('tingkat_ka') || 'Tinggi';
-
+                            // ubah warna
                             var colorMap = {
                                 'Tinggi': 'rgba(0, 255, 0, 0.6)',
                                 'Sedang': 'rgba(255, 0, 0, 0.6)',
