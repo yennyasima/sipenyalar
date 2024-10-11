@@ -540,7 +540,7 @@
         });
 
         var view = new ol.View({
-            center: ol.proj.fromLonLat([110.287958, -7.854943]),
+            center: ol.proj.fromLonLat([110.37080987401741, -7.801522645533201]),
             zoom: 13
         });
 
@@ -620,6 +620,7 @@
 
                     Object.keys(response).forEach(function(key) {
                         response[key].forEach(function(item) {
+                            console.log(item)
                             var feature = new ol.format.GeoJSON().readFeature({
                                 'type': 'Feature',
                                 'geometry': JSON.parse(item
@@ -628,7 +629,6 @@
                                 dataProjection: 'EPSG:4326',
                                 featureProjection: 'EPSG:3857'
                             });
-
                             vectorSource.addFeature(feature);
                         });
                     });
