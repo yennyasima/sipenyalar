@@ -612,13 +612,35 @@
                     wilayah: wilayah
                 },
                 success: function(response) {
-                    // Clear the current vectorSource
                     vectorSource.clear();
 
-                    // Add new features to the vectorSource
+                    var newVectorLayer = new ol.layer.Vector({
+                        source: vectorSource,
+                        style: function(feature) {
+                            var tingkatKa = feature.get('tingkat_ka') || 'Tinggi';
+
+                            var colorMap = {
+                                'Tinggi': 'rgba(0, 255, 0, 0.6)',
+                                'Sedang': 'rgba(255, 0, 0, 0.6)',
+                                'Rendah': 'rgba(0, 0, 255, 0.6)'
+                            };
+                            var fillColor = colorMap[tingkatKa.toString()] || 'rgba(0, 255, 0, 0.6)';
+                            return new ol.style.Style({
+                                fill: new ol.style.Fill({
+                                    color: fillColor
+                                }),
+                                stroke: new ol.style.Stroke({
+                                    color: '#333'
+                                    width: 1
+                                })
+                            });
+                        }
+                    });
+
+                    var data_penyakit = response.data_penyakit;
+
                     Object.keys(response).forEach(function(key) {
                         response[key].forEach(function(item) {
-                            console.log(item)
                             var feature = new ol.format.GeoJSON().readFeature({
                                 'type': 'Feature',
                                 'geometry': JSON.parse(item.geometry)
@@ -626,21 +648,14 @@
                                 dataProjection: 'EPSG:4326',
                                 featureProjection: 'EPSG:3857'
                             });
+                            feature.set('tingkat_ka', item.tingkat_ka || 'Tinggi');
                             vectorSource.addFeature(feature);
                         });
                     });
-
-                    // Ensure that features have been successfully added
-                    var featureCount = vectorSource.getFeatures().length;
-                    if (featureCount > 0) {
-                        toastr.success('Data berhasil dimuat! (' + featureCount + ' fitur ditambahkan)');
-                    } else {
-                        toastr.warning('Tidak ada fitur yang ditambahkan.');
-                    }
-
-                    // Ensure that the layer is properly applied to the map
+                    map.addLayer(newVectorLayer);
+                    toastr.success('Data berhasil dimuat!');
                     if (!map.getLayers().getArray().includes(vectorLayer)) {
-                        map.addLayer(vectorLayer); // Pastikan layer ditambahkan jika belum ada
+                        map.addLayer(vectorLayer);
                     }
                 },
                 error: function() {
@@ -654,11 +669,10 @@
     <script>
         document.getElementById("screenshot-btn").addEventListener("click", function() {
             html2canvas(document.body).then(function(canvas) {
-                // Mengubah canvas menjadi URL gambar
                 var link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png'); // Format gambar PNG
-                link.download = 'screenshot.png'; // Nama file hasil screenshot
-                link.click(); // Simulasikan klik untuk mendownload gambar
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'screenshot.png';
+                link.click()
             });
         });
     </script>
