@@ -649,6 +649,7 @@
                                 featureProjection: 'EPSG:3857'
                             });
                             feature.set('tingkat_ka', item.tingkat_ka || 'Tinggi');
+                            feature.set('id_poin', item.id);
                             vectorSource.addFeature(feature);
                         });
                     });
@@ -667,16 +668,13 @@
             map.on('singleclick', function (evt) {
         // Dapatkan koordinat klik
                 var coordinate = evt.coordinate;
-
                 // Ambil fitur di lokasi yang diklik
                 map.forEachFeatureAtPixel(evt.pixel, function (feature) {
                     // Ambil nama kelurahan dari atribut fitur
-                    var namaKelurahan = feature.get('kelurahan');
-
+                    var namaKelurahan = feature.get(id);
                     // Jika fitur memiliki nama kelurahan, tampilkan pop-up
                     if (kelurahan) {
                         var hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
-
                         // Tampilkan pop-up dengan nama kelurahan
                         container.innerHTML = '<div><strong>' + kelurahan + '</strong></div>';
                         overlay.setPosition(coordinate);
